@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geçen Süre Hesaplama</title>
+    <style>
+        body {
+            background-image: url('background.jpg'); /* Fotoğraf ve kalp deseni dosya yollarını buraya ekleyin */
+            background-size: contain; /* Fotoğrafın otomatik boyutlandırılmasını, kalp deseninin sayfanın tamamını kaplamasını sağlar */
+            background-repeat: repeat; /* Fotoğrafın yinelenmemesini, kalp deseninin yinelenmesini sağlar */
+            background-attachment: fixed; /* Her ikisini de sabit konumda tutar */
+            color: white; /* Yazı rengini beyaz yapar */
+            text-align: center; /* Yazıyı ortalar */
+            font-size: 1em; /* Yazı boyutunu ayarlar */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+    </style>
+    
+
+    
+</head>
+<body>
+    <h1>BEYZA - İBRAHİM</h1>
+    <p id="result"></p>
+
+    <script>
+        function calculateElapsedTime() {
+            const startDate = new Date("2020-12-18"); // Başlangıç tarihi
+            const currentDate = new Date(); // Şu anki tarih
+
+            const timeDifference = currentDate - startDate;
+
+            // Süreleri hesaplayın
+            const totalSeconds = Math.floor(timeDifference / 1000);
+            const totalMinutes = Math.floor(totalSeconds / 60);
+            const totalHours = Math.floor(totalMinutes / 60);
+            const totalDays = Math.floor(totalHours / 24);
+            const totalWeeks = Math.floor(totalDays / 7);
+            const totalMonths = Math.floor(totalDays / 30.44); // Ortalama ay uzunluğu
+            const totalYears = Math.floor(totalMonths / 12);
+
+            document.getElementById("result").innerHTML = `
+                ${totalYears} yıl, 
+                ${totalMonths % 12} ay, 
+                ${totalWeeks % 4} hafta, 
+                ${totalDays % 7} gün, 
+                ${totalHours % 24} saat, 
+                ${totalMinutes % 60} dakika, 
+                ${totalSeconds % 60} saniye geçti.`;
+        }
+
+        // Belirli bir aralıkla sürekli olarak hesaplamayı güncelleyin
+        setInterval(calculateElapsedTime, 1000); // Her saniye yenile
+    </script>
+</body>
+</html>
